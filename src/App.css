@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap");
 
+:root {
+  --primary: #ffffff;
+}
 /*Utility class*/
 .flex {
   display: flex;
@@ -32,24 +35,24 @@ body {
   min-height: 100vh;
   background-image: linear-gradient(
     to right top,
-    #8585d8,
-    #a775cd,
-    #c463b7,
-    #da4f99,
-    #e63f74,
-    #ef4756,
-    #ef5935,
-    #e46f00,
-    #d59300,
-    #bab500,
-    #8ed400,
-    #2ff059
+    #eb9eca,
+    #e2a3d4,
+    #d8a8dd,
+    #cdaee4,
+    #c2b3e8,
+    #c6b2e7,
+    #cab0e6,
+    #ceafe4,
+    #e1a7d8,
+    #f19fc6,
+    #fb9ab0,
+    #ff9898
   );
-  color: white;
+  color: black;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
@@ -76,16 +79,15 @@ button:focus {
 
 .container {
   display: grid;
-  grid-template-columns: repeat(4, minmax(240px, auto));
-  grid-auto-rows: minmax(100px, auto);
+  grid-template-columns: repeat(auto-fit, minmax(240px, auto));
+  grid-auto-rows: minmax(50px, auto);
   gap: 10px;
   grid-template-areas:
     "h h h h"
     "h h h h"
-    "a a m m"
-    "a a m m"
-    "a a m m"
-    "a a m m"
+    "a m m m"
+    "a m m m"
+    "a m m m"
     "f f f f";
 }
 
@@ -93,24 +95,165 @@ header {
   margin-top: 20px;
   text-align: center;
   grid-area: h;
-  letter-spacing: 3px;
+  letter-spacing: 5px;
   font-size: 1.5em;
-  border: 1px solid red;
+  padding: 40px 0;
 }
 aside {
   grid-area: a;
-  border: 2px solid black;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  flex-direction: column;
 }
 main {
   grid-area: m;
-  border: 2px solid blue;
 }
 footer {
   grid-area: f;
+  text-align: center;
+  padding: 20px;
 }
+footer button {
+  font-size: 1.58em;
+  border: 0;
+  font-size: 1.2em;
+  padding: 10px 20px;
+  color: black;
+  background: rgb(43, 55, 221);
+  color: white;
+  border-radius: 5px;
+}
+
+footer button:hover {
+  background: rgb(183, 188, 255);
+  color: rgb(43, 55, 221);
+}
+
 .underline {
   width: 13%;
   height: 5px;
-  background: #e7155b;
+  background: var(--primary);
   margin: auto;
+}
+.company {
+  border: 0;
+  font-size: 1.2em;
+  padding: 10px 20px;
+  background: transparent;
+  color: black;
+  margin-bottom: 10px;
+}
+.company:hover {
+  color: var(--primary);
+  border-left: 2px solid var(--primary);
+}
+main h1 {
+  font-weight: 300;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+}
+.middle {
+  flex-direction: column;
+  align-items: flex-start !important;
+}
+
+main span:nth-child(1) {
+  margin: 10px 0 15px;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: #23c587;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: white;
+}
+main span:nth-child(2) {
+  text-transform: capitalize;
+  letter-spacing: 3px;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  color: #333333;
+}
+i {
+  color: var(--primary);
+}
+.bottom {
+  margin-top: 20px;
+}
+.bottom p {
+  margin-left: 40px;
+  line-height: 1.6;
+  letter-spacing: 2px;
+  color: #3b3b3b;
+}
+@media (max-width: 850px) {
+  .container {
+    grid-template-areas:
+      "h h h h"
+      "a a a a"
+      "m m m m"
+      "m m m m"
+      "f f f f";
+  }
+  aside {
+    justify-content: space-between !important;
+    flex-direction: row;
+  }
+  body {
+    padding: 10px 40px;
+  }
+  header {
+    margin-top: 0px;
+    padding: 15px 0;
+  }
+  main h1 {
+    text-align: center;
+  }
+  main span:nth-child(1) {
+    display: block;
+    margin: 15px auto 5px;
+  }
+  main span:nth-child(2) {
+    display: block;
+    margin: 15px auto;
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    letter-spacing: 1px;
+    font-size: 1em;
+  }
+  .company {
+    font-size: 0.9em;
+    padding: 8px 16px;
+    margin-bottom: 0px;
+  }
+  main h1 {
+    font-size: 1.2em;
+    letter-spacing: 1px;
+  }
+  main span:nth-child(1) {
+    display: block;
+    margin: 10px auto 5px;
+    font-size: 1em;
+  }
+  main span:nth-child(2) {
+    letter-spacing: 1px;
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+  body {
+    padding: 5px 10px 10px;
+  }
+  .bottom p {
+    margin-left: 20px;
+    line-height: 1.4;
+    letter-spacing: 1px;
+    color: #3b3b3b;
+  }
+  footer button {
+    font-size: 1em;
+    padding: 8px 16px;
+  }
 }

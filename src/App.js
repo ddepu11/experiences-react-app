@@ -1,9 +1,26 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import workExperience from "./work-experience";
+import Button from "./components/Button";
 
 function App() {
-  const [employeesData, setEmployeesData] = useState([]);
-  const [employees, setEmployees] = useState([]);
+  const [experiences, setExperiences] = useState([]);
+  const [companies, setCompanies] = useState([]);
+  const [copmIndex, setCompIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setExperiences(workExperience);
+    setCompanies([...workExperience.map((item) => item.company)]);
+    setLoading(false);
+  }, []);
+
+  function changeExperiemnce(e) {
+    setLoading(true);
+    const index = e.target.dataset.index;
+    setCompIndex(index);
+    setLoading(false);
+  }
 
   return (
     <div className="container">
@@ -13,27 +30,40 @@ function App() {
       </header>
 
       <aside className="flex">
-        <button>Tommy</button>
-        <button>Tommy</button>
-        <button>Tommy</button>
+        {companies.map((item, index) => (
+          <Button
+            index={index}
+            changeExperiemnce={changeExperiemnce}
+            key={index * 5}
+            btnStyle="company"
+          >
+            {item}
+          </Button>
+        ))}
       </aside>
 
       <main>
-        <h1>Full stack developer</h1>
+        {loading ? (
+          <h1>Loading...</h1>
+        ) : (
+          <>
+            <h1>{experiences[copmIndex].title}</h1>
 
-        <span>Tommy</span>
+            <div className="middle  flex">
+              <span>{experiences[copmIndex].company}</span>
+              <span className="duration">{experiences[copmIndex].dates}</span>
+            </div>
 
-        <span className="duration">december 2014 - present</span>
-
-        <div>
-          <i class="fas fa-forward fa-2x"></i>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus,
-            quas cupiditate aliquam qui eaque atque beatae illum? Exercitationem
-            aut, tenetur asperiores veniam ad eius nemo ab quam necessitatibus
-            dolor alias.
-          </p>
-        </div>
+            {experiences[copmIndex].duties.map((item, index) => {
+              return (
+                <div className="bottom flex" key={index}>
+                  <i className="fas fa-forward fa-1x"></i>
+                  <p>{item}</p>
+                </div>
+              );
+            })}
+          </>
+        )}
       </main>
       <footer>
         <button>More Info</button>
